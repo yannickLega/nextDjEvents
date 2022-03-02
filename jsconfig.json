@@ -1,3 +1,4 @@
+//FIXME issue with eslint-import-resolver-typescript/lib
 {
   "compilerOptions": {
     "baseUrl": ".",
