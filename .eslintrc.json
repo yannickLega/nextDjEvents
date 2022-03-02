@@ -1,6 +1,6 @@
 {
   "extends": "next/core-web-vitals",
   "settings": {
-    "import/extensions": [".js", ".jsx"]
+    "import/extensions": [".js", ".jsx", ".ts", ".tsx"]
   }
 }
