@@ -122,7 +122,7 @@ export default function AddPage() {
           </div>
         </div>
         <div>
-          <label htmlFor="description">EventDescription</label>
+          <label htmlFor="description">Event Description</label>
           <textarea
             type="text"
             name="description"
