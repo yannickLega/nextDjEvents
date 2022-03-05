@@ -1,9 +1,10 @@
-import { useState, useEffect, useContext } from "react";
-import Link from "next/link";
-import Layout from "@/components/Layout";
 import { FaUser } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState, useEffect, useContext } from "react";
+import Link from "next/link";
+import Layout from "@/components/Layout";
+import AuthContext from "@/context/AuthContext";
 import styles from "@/styles/AuthForm.module.css";
 
 export default function RegisterPage() {
@@ -12,15 +13,19 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
+  const { register, error } = useContext(AuthContext);
+
+  useEffect(() => error && toast.error(error));
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (password !== passwordConfirm) {
-      toast.error("passwords do not match");
+      toast.error("Passwords do not match!");
       return;
     }
 
-    console.log({ username, email, password });
+    register({ username, email, password });
   };
 
   return (
@@ -32,7 +37,7 @@ export default function RegisterPage() {
         <ToastContainer />
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="Username">Username</label>
+            <label htmlFor="username">Username</label>
             <input
               type="text"
               id="username"
@@ -67,10 +72,12 @@ export default function RegisterPage() {
               onChange={(e) => setPasswordConfirm(e.target.value)}
             />
           </div>
-          <input type="submit" value="Login" className="btn" />
+
+          <input type="submit" value="Register" className="btn" />
         </form>
+
         <p>
-          Already have an account? <Link href="/account/login">Log In</Link>
+          Already have an account? <Link href="/account/login">Login</Link>
         </p>
       </div>
     </Layout>
